@@ -9,5 +9,6 @@ export function configureStore() {
             applyMiddleware(thunk),
             window.devToolsExtension ? window.window.devToolsExtension() : f => f
         )
-    )
+    );
+    return store;
 }

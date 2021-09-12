@@ -1,17 +1,17 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import logo from "../images/warbler-logo.png"
+import logo from "../images/warbler-logo.png";
 
 class Navbar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg">
+            <nav className="navbar navbar-expand">
                 <div className="container-fluid">
                     <Link to="/" className="navbar-brand">
                         <img src={logo} alt="Warbler Home" />
                     </Link>
-                    <ul className="nav navbar-nav">
+                    <ul className="navbar-nav">
                         <li className="nav-item">
                             <Link to="/signup" className="nav-link">Sign up</Link>
                         </li>

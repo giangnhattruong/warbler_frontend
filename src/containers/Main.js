@@ -39,4 +39,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {authUser}) (Main);
+export default withRouter(connect(mapStateToProps, {authUser}) (Main));

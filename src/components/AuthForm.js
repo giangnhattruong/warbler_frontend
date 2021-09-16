@@ -14,9 +14,10 @@ class Authform extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		const authType = this.props.signUp? "signup": "signin";
-		this.props.onAuth(authType, this.state). then(() => {
-			console.log("Ok")
-		})
+		this.props.onAuth(authType, this.state)
+			.then(() => {
+				console.log("U Ok")
+			})
 		this.setState({
 			email           : '',
 			username        : '',

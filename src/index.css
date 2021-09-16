@@ -30,6 +30,10 @@ body {
   cursor: pointer;
 }
 
+.navbar a:focus {
+  color: var(--nav-link-hover-color);
+}
+
 .navbar-brand > img {
   display: inline-block;
   width: 45px;

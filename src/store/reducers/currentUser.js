@@ -13,8 +13,8 @@ const currentUser = (state=DEFAULT_USER_STATE, action) => {
         case SET_CURRENT_USER:
             return {
                 ...state,
-                // "!!" turn empty object into false, if there are keys then true
-                // is works the same as Object.keys(action.user).length > 0
+                // "!!" turn 0 into false, any other number into true
+                // is works the same as Object.keys(action.user).length !== 0
                 // if user log out, we run SET_CURRENT_USER again, then user will be set as {} so isAuthenticated become false
                 // so we don't need action LOG_OUT
                 isAuthenticated: !!Object.keys(action.user).length,

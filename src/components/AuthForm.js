@@ -28,7 +28,11 @@ class Authform extends Component {
 
 	render() {
 		const { email, username, password, profileImageUrl } = this.state;
-		const { error, heading, buttonText, signUp } = this.props;
+		const { error, heading, buttonText, signUp, history, removeError } = this.props;
+		history.listen(() => {
+			removeError();
+		})
+		
 		return (
 			<div className="row justify-content-md-center text-center">
 				<div className="col-md-6">
@@ -47,6 +51,7 @@ class Authform extends Component {
 							onChange={this.handleChange}
 							value={email}
 							type="text"
+							required
 						/>
 						<label htmlFor="password">Password:</label>
 						<input
@@ -55,6 +60,7 @@ class Authform extends Component {
 							name="password"
 							onChange={this.handleChange}
 							type="password"
+							required
 						/>
                         {signUp && (
                             <div>
@@ -66,6 +72,7 @@ class Authform extends Component {
                                     onChange={this.handleChange}
                                     value={username}
                                     type="text"
+									required
                                 />
                                 <label htmlFor="profileImageUrl">Image URL:</label>
                                 <input

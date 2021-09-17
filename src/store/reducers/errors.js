@@ -3,9 +3,9 @@ import { ADD_ERROR, REMOVE_ERROR } from "../actionTypes";
 const error = (state={message: null}, action) => {
     switch(action.type) {
         case ADD_ERROR:
-            return {
+            return { 
                 ...state,
-                message: action.error
+                message: action.errorMessage
             }
         case REMOVE_ERROR:
             return {

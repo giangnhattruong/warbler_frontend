@@ -15,10 +15,8 @@ import axios from "axios";
 export async function apiCall(method, path, data) {
     try{
         const res = await axios[method](path, data);
-        console.log("apiCall res: ", res);
         return res.data;
     } catch(err) {
-        console.log("apiCall err: ", err);
         return err.response.data.error;
     }
 }

@@ -6,13 +6,14 @@ import AuthForm from "../components/AuthForm";
 import { authUser } from "../store/actions/auth";
 
 const Main = props => {
-    const {authUser} = props;
+    const {authUser, error} = props;
     return (
         <div className="container">
             <Switch>
                 <Route exact path="/" render={props => <Homepage {...props} />} />
                 <Route exact path="/signin" render={props => (
                     <AuthForm 
+                        error={error}
                         buttonText="Log In"
                         heading="Welcome Back"
                         onAuth={authUser}
@@ -22,6 +23,7 @@ const Main = props => {
                 <Route exact path="/signup" render={props => (
                     <AuthForm
                         signUp
+                        error={error}
                         buttonText="Sign me up!"
                         heading="Join Warbler today"
                         onAuth={authUser}
@@ -35,7 +37,8 @@ const Main = props => {
 
 function mapStateToProps(state) {
     return {
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
+        error: state.error
     }
 }
 

@@ -7,15 +7,16 @@ import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 
 const Main = props => {
-    const {authUser, error, removeError} = props;
+    const {authUser, error, removeError, currentUser} = props;
     return (
         <div className="container">
             <Switch>
                 <Route exact path="/" render={props => 
-                    <Homepage {...props} />
+                    <Homepage currentUser={currentUser} {...props} />
                 }/>
                 <Route exact path="/signin" render={props => (
                     <AuthForm 
+                        currentUser={currentUser}
                         removeError={removeError}
                         error={error}
                         buttonText="Log In"
@@ -26,6 +27,7 @@ const Main = props => {
                 )} />
                 <Route exact path="/signup" render={props => (
                     <AuthForm
+                        currentUser={currentUser}
                         removeError={removeError}
                         signUp
                         error={error}

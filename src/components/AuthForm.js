@@ -11,13 +11,20 @@ class Authform extends Component {
 		};
 	}
 
-	handleSubmit = (event) => {
+	handleSubmit = async (event) => {
 		event.preventDefault();
 		const authType = this.props.signUp? "signup": "signin";
-		this.props.onAuth(authType, this.state)
-			.then(() => {
-				console.log("U Ok")
-			})
+		try {
+			await this.props.onAuth(authType, this.state);
+			if (this.props.currentUser.isAuthenticated) {
+				return this.props.history.push("/");
+			}
+		}
+		catch(err) {
+			console.log("handleSubmit error: ", err)
+			return;
+		}
+		
 	}
 
 	handleChange = (event) => {
@@ -28,68 +35,75 @@ class Authform extends Component {
 
 	render() {
 		const { email, username, password, profileImageUrl } = this.state;
-		const { error, heading, buttonText, signUp, history, removeError } = this.props;
+		const { error, heading, buttonText, signUp, history, removeError, currentUser } = this.props;
 		history.listen(() => {
 			removeError();
 		})
-		
-		return (
-			<div className="row justify-content-md-center text-center">
-				<div className="col-md-6">
-					<form onSubmit={this.handleSubmit}>
-						<h2>{heading}</h2>
-						{error.message && (
-							<div className="alert alert-danger">
-								{error.message}
-							</div>
-						)}
-						<label htmlFor="email">Email:</label>
-						<input
-							className="form-control mb-1"
-							id="email"
-							name="email"
-							onChange={this.handleChange}
-							value={email}
-							type="text"
-							required
-						/>
-						<label htmlFor="password">Password:</label>
-						<input
-							className="form-control mb-1"
-							id="password"
-							name="password"
-							onChange={this.handleChange}
-							type="password"
-							required
-						/>
-                        {signUp && (
-                            <div>
-                                <label htmlFor="username">Username:</label>
-                                <input
-                                    className="form-control mb-1"
-                                    id="username"
-                                    name="username"
-                                    onChange={this.handleChange}
-                                    value={username}
-                                    type="text"
-									required
-                                />
-                                <label htmlFor="profileImageUrl">Image URL:</label>
-                                <input
-                                    className="form-control mb-1"
-                                    id="profileImageUrl"
-                                    name="profileImageUrl"
-                                    onChange={this.handleChange}
-                                    value={profileImageUrl}
-                                    type="text"
-                                />
-                            </div>
-                        )}
-						<button className="btn btn-primary w-100 mt-3">{buttonText}</button>
-					</form>
+
+		if (!currentUser.isAuthenticated) {
+			return (
+				<div className="row justify-content-md-center text-center">
+					<div className="col-md-6">
+						<form onSubmit={this.handleSubmit}>
+							<h2>{heading}</h2>
+							{error.message && (
+								<div className="alert alert-danger">
+									{error.message}
+								</div>
+							)}
+							<label htmlFor="email">Email:</label>
+							<input
+								className="form-control mb-1"
+								id="email"
+								name="email"
+								onChange={this.handleChange}
+								value={email}
+								type="text"
+								required
+							/>
+							<label htmlFor="password">Password:</label>
+							<input
+								className="form-control mb-1"
+								id="password"
+								name="password"
+								onChange={this.handleChange}
+								type="password"
+								required
+							/>
+							{signUp && (
+								<div>
+									<label htmlFor="username">Username:</label>
+									<input
+										className="form-control mb-1"
+										id="username"
+										name="username"
+										onChange={this.handleChange}
+										value={username}
+										type="text"
+										required
+									/>
+									<label htmlFor="profileImageUrl">Image URL:</label>
+									<input
+										className="form-control mb-1"
+										id="profileImageUrl"
+										name="profileImageUrl"
+										onChange={this.handleChange}
+										value={profileImageUrl}
+										type="text"
+									/>
+								</div>
+							)}
+							<button className="btn btn-primary w-100 mt-3">{buttonText}</button>
+						</form>
+					</div>
 				</div>
+			);
+		}
+		return (
+			<div>
+				<h1 className="text-center">Sorry, please Sign Out first if you want to Sign Up or Sign In again!</h1>
 			</div>
-		);
+		)
 	}
 }
 

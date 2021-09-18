@@ -2,16 +2,16 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import logo from "../images/warbler-logo.png";
-import {logout} from "../store/actions/auth";
+import {signOut} from "../store/actions/auth";
 
 class Navbar extends Component {
     constructor(props){
         super(props);
     }
 
-    logout = event => {
+    signOut = event => {
         event.preventDefault();
-        this.props.logout();
+        this.props.signOut();
     }
 
     render() {
@@ -40,7 +40,7 @@ class Navbar extends Component {
                                         <Link to={`/users/${currentUser.user.id}/messages/new`} className="nav-link">New Message</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a onClick={this.logout} className="nav-link">Sign Out</a>
+                                        <a onClick={this.signOut} className="nav-link">Sign Out</a>
                                     </li>
                                 </ul>
                             )
@@ -57,4 +57,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {logout}) (Navbar);
+export default connect(mapStateToProps, {signOut}) (Navbar);

@@ -21,7 +21,6 @@ class Authform extends Component {
 			}
 		}
 		catch(err) {
-			console.log("handleSubmit error: ", err)
 			return;
 		}
 		

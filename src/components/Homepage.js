@@ -14,7 +14,7 @@ const Homepage = ({currentUser}) => {
         )
     }
     const {username} = currentUser.user;
-    const greetUsername = username.toUpperCase()[0] + username.toLowerCase().slice(1);
+    const greetUsername = username.toUpperCase()[0] + username.slice(1);
     return (
         <div>
             <h1 className="text-center">Hi {greetUsername}, how are you doing today?</h1>

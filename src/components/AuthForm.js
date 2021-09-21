@@ -33,7 +33,6 @@ class Authform extends Component {
 	}
 
 	render() {
-		const { email, username, password, profileImageUrl } = this.state;
 		const { error, heading, buttonText, signUp, history, removeError, currentUser } = this.props;
 		history.listen(() => {
 			removeError();
@@ -56,7 +55,6 @@ class Authform extends Component {
 								id="email"
 								name="email"
 								onChange={this.handleChange}
-								value={email}
 								type="text"
 								required
 							/>
@@ -77,7 +75,6 @@ class Authform extends Component {
 										id="username"
 										name="username"
 										onChange={this.handleChange}
-										value={username}
 										type="text"
 										required
 									/>
@@ -87,7 +84,6 @@ class Authform extends Component {
 										id="profileImageUrl"
 										name="profileImageUrl"
 										onChange={this.handleChange}
-										value={profileImageUrl}
 										type="text"
 									/>
 								</div>

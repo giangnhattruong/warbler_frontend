@@ -32,7 +32,6 @@ export const authUser = (type, userData) => {
             }
         } 
         catch(err) {
-            console.log(err);
             const {message} = err;
             dispatch(addError(message));
         }

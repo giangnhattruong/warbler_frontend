@@ -68,3 +68,17 @@ navbar-nav li {
   padding: 1rem;
   text-shadow: var(--home-text-shadow);
 }
+
+.list-group-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 7px 20px 12px;
+}
+
+#messages:not(.no-hover) .list-group-item:hover {
+  background-color: var(--body-background-color);
+}
+
+.username {
+  text-decoration: none;
+}

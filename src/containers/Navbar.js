@@ -5,10 +5,6 @@ import logo from "../images/warbler-logo.png";
 import {signOut} from "../store/actions/auth";
 
 class Navbar extends Component {
-    constructor(props){
-        super(props);
-    }
-
     signOut = event => {
         event.preventDefault();
         this.props.signOut();
@@ -40,7 +36,7 @@ class Navbar extends Component {
                                         <Link to={`/users/${currentUser.user.id}/messages/new`} className="nav-link">New Message</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a onClick={this.signOut} className="nav-link">Sign Out</a>
+                                        <Link onClick={this.signOut} className="nav-link">Sign Out</Link>
                                     </li>
                                 </ul>
                             )

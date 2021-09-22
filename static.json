@@ -5,7 +5,7 @@
     },
     "proxies": {
         "/api": {
-            "origin": "https://james-first-react.herokuapp.com"
+            "origin": "http://james-first-api-for-react.herokuapp.com/"
         }
     }
 }

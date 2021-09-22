@@ -82,3 +82,15 @@ navbar-nav li {
 .username {
   text-decoration: none;
 }
+
+.timeline-image {
+  border-radius: 50px;
+  height: 48px;
+  width: 48px;
+  margin: 2px 30px 10px 10px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+

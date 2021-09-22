@@ -9,12 +9,15 @@ import jwtDecode from "jwt-decode";
 
 const store = configureStore();
 const {jwtToken} = localStorage;
-
 if(jwtToken) {
   setAuthorizationToken(jwtToken);
   // prevent someone from manually tampering with the key of jwtToken in localStorage
   try {
-    store.dispatch(setCurrentUser(jwtDecode(jwtToken)));
+    if(parseInt(jwtDecode(jwtToken).expires) > Date.now()) {
+      store.dispatch(setCurrentUser(jwtDecode(jwtToken)));
+    } else {
+      store.dispatch(setCurrentUser({}));
+    }
   }
   catch(err) {
     store.dispatch(setCurrentUser({}));

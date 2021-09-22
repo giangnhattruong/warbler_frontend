@@ -9,7 +9,7 @@ class MessageList extends Component {
     }
 
     render() {
-        const {messages, removeMessage} = this.props;
+        const {currentUser, messages, removeMessage} = this.props;
         let views = <div>Waiting...</div>
         if (messages.length) {
             views = messages.map(m => (
@@ -19,6 +19,7 @@ class MessageList extends Component {
                     username={m.user.username}
                     profileImageUrl={m.user.profileImageUrl}
                     date={m.createdAt}
+                    isCorrectUser={m.user._id === currentUser}
                     removeMessage={removeMessage.bind(this, m.user._id, m._id)}
                 />
             ));
@@ -38,6 +39,7 @@ class MessageList extends Component {
 
 function mapStateToProps(state){
     return {
+        currentUser: state.currentUser.user.id,
         messages: [...state.messages]
     }
 }
